@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="#434343"
+    android:backgroundTint="#434343">
 
     <ImageView
         android:id="@+id/ivPoster"
@@ -23,6 +25,7 @@
         android:layout_toEndOf="@+id/ivPoster"
         android:maxHeight="120dp"
         android:scrollbars="vertical"
+        android:textColor="@color/white"
         android:scrollbarAlwaysDrawVerticalTrack="true"
         tools:layout_editor_absoluteX="179dp"
         tools:layout_editor_absoluteY="35dp"
@@ -35,6 +38,7 @@
         android:layout_marginStart="8dp"
         android:layout_toEndOf="@+id/ivPoster"
         android:textSize="24sp"
+        android:textStyle="bold"
         tools:layout_editor_absoluteX="186dp"
         tools:layout_editor_absoluteY="75dp"
         tools:text="Army of the Dead" />

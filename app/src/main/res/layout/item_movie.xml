@@ -3,11 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="#434343"
+    android:backgroundTint="#434343">
 
     <ImageView
         android:id="@+id/ivPoster"
-        android:layout_width="120dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="31dp"
         tools:layout_editor_absoluteY="24dp"
@@ -18,12 +20,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvTitle"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="3dp"
         android:layout_toEndOf="@+id/ivPoster"
         android:maxHeight="120dp"
-        android:scrollbars="vertical"
         android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbars="vertical"
+        android:textColor="@color/white"
         tools:layout_editor_absoluteX="179dp"
         tools:layout_editor_absoluteY="35dp"
         tools:text="Following a zombie outbreak in Las Vegas, a group of mercenaries
@@ -36,7 +39,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_toEndOf="@+id/ivPoster"
+        android:textColor="@color/white"
         android:textSize="24sp"
+        android:textStyle="bold"
         tools:layout_editor_absoluteX="186dp"
         tools:layout_editor_absoluteY="75dp"
         tools:text="Army of the Dead" />

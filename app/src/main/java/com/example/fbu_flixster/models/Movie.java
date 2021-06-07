@@ -16,6 +16,7 @@ public class Movie {
     String overview;
     String backdropPath;
     Double voteAverage;
+    int movieID;
 
     // Empty constructor for Parcel
     public Movie(){}
@@ -27,6 +28,7 @@ public class Movie {
         overview = jsonObject.getString("overview");
         backdropPath = jsonObject.getString("backdrop_path");
         voteAverage = jsonObject.getDouble("vote_average");
+        movieID = jsonObject.getInt("id");
     }
 
     public static List<Movie> fromJsonArray(JSONArray jsonArray) throws JSONException {
@@ -49,4 +51,6 @@ public class Movie {
     public String getBackdropPath() { return String.format("https://image.tmdb.org/t/p/w342/%s", backdropPath); }
 
     public Double getVoteAverage() { return voteAverage; }
+
+    public int getMovieID() { return movieID; }
 }

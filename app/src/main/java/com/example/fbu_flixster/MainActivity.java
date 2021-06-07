@@ -2,6 +2,7 @@ package com.example.fbu_flixster;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "MainActivity";
     public static final String NOW_PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=";
-    private static final String API_KEY = "b4f45155b698ba40d8e9ce3bdcd4ebee";
+    public static final String API_KEY = "b4f45155b698ba40d8e9ce3bdcd4ebee";
 
     private List<Movie> movieList;
 
@@ -35,12 +36,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         movieList = new ArrayList<>();
         MovieAdapter movieAdapter = new MovieAdapter(this, movieList);
         RecyclerView rvMovies = findViewById(R.id.rvMovies);
         rvMovies.setAdapter(movieAdapter);
         rvMovies.setLayoutManager(new LinearLayoutManager(this));
-        rvMovies.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL));
+        rvMovies.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(NOW_PLAYING_URL + API_KEY, new JsonHttpResponseHandler() {
@@ -50,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 JSONObject object = json.jsonObject;
                 try {
                     JSONArray results = object.getJSONArray("results");
+                    Log.d(TAG, results.toString());
                     movieList.addAll(Movie.fromJsonArray(results));
                     Log.i(TAG, "Results: " + results.toString());
                     Log.i(TAG, "Movie list size: " + movieList.size());
