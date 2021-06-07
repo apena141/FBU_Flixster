@@ -25,7 +25,7 @@ public class MovieDetailsActivity extends YouTubeBaseActivity {
 
     public static final String TAG = "MovieDetailsActivity";
     private static final String videoURL = "https://api.themoviedb.org/3/movie/%d/videos?api_key=" + MainActivity.API_KEY;
-    public static final String YT_API_KEY = "AIzaSyA9qMQpKN86rEdmjQcMCSmAJ8brfUOR_5U";
+    public static final String YT_API_KEY = BuildConfig.YT_API;
 
     Movie movie;
     ActivityMovieDetailsBinding binding;
