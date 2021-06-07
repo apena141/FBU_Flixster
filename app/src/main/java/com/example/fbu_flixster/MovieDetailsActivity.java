@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -35,6 +36,7 @@ public class MovieDetailsActivity extends YouTubeBaseActivity {
     TextView tvTitle;
     TextView tvOverview;
     RatingBar ratingBar;
+    ImageButton ibPlay;
     String movieYoutubeKey;
 
     @Override
@@ -49,6 +51,7 @@ public class MovieDetailsActivity extends YouTubeBaseActivity {
         tvOverview = binding.tvOverview;
         ratingBar = binding.rbVoteAverage;
         ivPlayer = binding.ivPlayer;
+        ibPlay = binding.imageButton;
 
         movie = (Movie) Parcels.unwrap(getIntent().getParcelableExtra("MOVIE"));
         tvTitle.setText(movie.getTitle());
@@ -81,7 +84,7 @@ public class MovieDetailsActivity extends YouTubeBaseActivity {
                 .centerCrop()
                 .transform(new BlurTransformation(60))
                 .into(ivPlayer);
-        ivPlayer.setOnClickListener(new View.OnClickListener() {
+        ibPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MovieDetailsActivity.this, MovieTrailerActivity.class);
