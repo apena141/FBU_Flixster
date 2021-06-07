@@ -3,6 +3,7 @@ package com.example.fbu_flixster.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -73,19 +74,26 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
         public void bind(Movie movie) {
             tvTitle.setText(movie.getTitle());
             tvOverview.setText(movie.getOverview());
-
+            Drawable placeHolder;
             String imageUrl;
             if(context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                imageUrl = movie.getBackdropPath();
+                Glide.with(context)
+                        .load(imageUrl)
+                        .circleCrop()
+                        .placeholder(R.drawable.flicks_backdrop_placeholder)
+                        .transform(new RoundedCornersTransformation(30, 0))
+                        .into(ivPoster);
             }
             else{
                 imageUrl = movie.getPosterPath();
+                Glide.with(context)
+                        .load(imageUrl)
+                        .circleCrop()
+                        .placeholder(R.drawable.flicks_movie_placeholder)
+                        .transform(new RoundedCornersTransformation(30, 0))
+                        .into(ivPoster);
             }
-            Glide.with(context)
-                    .load(imageUrl)
-                    .circleCrop()
-                    .transform(new RoundedCornersTransformation(30, 0))
-                    .into(ivPoster);
         }
 
         @Override
