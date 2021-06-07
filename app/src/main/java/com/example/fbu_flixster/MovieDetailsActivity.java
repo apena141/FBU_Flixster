@@ -4,21 +4,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.fbu_flixster.databinding.ActivityMovieDetailsBinding;
 import com.example.fbu_flixster.models.Movie;
 import com.google.android.youtube.player.YouTubeBaseActivity;
-import com.google.android.youtube.player.YouTubePlayerView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.parceler.Parcels;
 
+import jp.wasabeef.glide.transformations.BlurTransformation;
 import okhttp3.Headers;
 
 public class MovieDetailsActivity extends YouTubeBaseActivity {
@@ -29,7 +31,7 @@ public class MovieDetailsActivity extends YouTubeBaseActivity {
 
     Movie movie;
     ActivityMovieDetailsBinding binding;
-    YouTubePlayerView youTubePlayerView;
+    ImageView ivPlayer;
     TextView tvTitle;
     TextView tvOverview;
     RatingBar ratingBar;
@@ -46,6 +48,7 @@ public class MovieDetailsActivity extends YouTubeBaseActivity {
         tvTitle = binding.tvTitle;
         tvOverview = binding.tvOverview;
         ratingBar = binding.rbVoteAverage;
+        ivPlayer = binding.ivPlayer;
 
         movie = (Movie) Parcels.unwrap(getIntent().getParcelableExtra("MOVIE"));
         tvTitle.setText(movie.getTitle());
@@ -73,8 +76,12 @@ public class MovieDetailsActivity extends YouTubeBaseActivity {
                     }
                 });
 
-        youTubePlayerView = binding.player;
-        youTubePlayerView.setOnClickListener(new View.OnClickListener() {
+        Glide.with(this)
+                .load(movie.getBackdropPath())
+                .centerCrop()
+                .transform(new BlurTransformation(60))
+                .into(ivPlayer);
+        ivPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MovieDetailsActivity.this, MovieTrailerActivity.class);
